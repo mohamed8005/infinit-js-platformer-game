@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="../css/home.css">
+    <style>
+        body {
+            min-height: 100vh; /* Provide enough scroll height */
+            margin: 0;
+            padding: 0;
+        }
+
+        #video-container {
+            z-index: -1;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @keyframes glow {
+            0%{
+                box-shadow:  0px 0px 61px 0px rgb(255, 251, 0);
+                color:black;
+            }
+            50%{
+                box-shadow:  0px 0px 61px 10px rgb(255, 251, 0);color:black;
+            }
+            100%{
+                box-shadow:  0px 0px 61px 2px rgb(255, 251, 0);color:black;
+            }
+            
+        }
+   
+    </style>
+</head>
+<body>
+    <div id="video-container">
+        <video id="scroll-video" autoplay loop>
+            <source src="video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+    <div class="full2"></div>
+    <div class="full2"></div>
+    <div class="full2"></div>
+    <div class="full2" id="full1" style="color: transparent;">
+        <h1 >
+            Meet Our Exceptional Development Team
+        </h1>
+    </div>
+    <div class="full2"><div class="card" style="font-size: larger;">
+
+        <div style="margin: 10px;"><p >
+
+            At the heart of our organization, we proudly introduce a dedicated and innovative team of developers who are deeply passionate about their careers and unwavering in their pursuit of perfection. 
+            Their commitment to excellence drives us to deliver remarkable digital solutions, and their collaborative spirit makes every project a journey of creativity and achievement.
+        </p></div>
+        </div>
+    </div>
+    <div class="full2"></div>
+    <div class="full2"></div>
+    <div class="full2" style="background-image: url('../img/bg.jpg'); background-size: cover;">
+        <div class="team-content">
+            <h1>Meet the XpertDev Team</h1>
+            <p>
+                At XpertDev, we take great pride in our exceptional development team. Our team consists of highly skilled and creative individuals who are passionate about crafting innovative solutions.
+            </p>
+            <p>
+                With expertise in a wide range of technologies and programming languages, our developers work together to bring your ideas to life. Their commitment to excellence drives us to deliver remarkable digital solutions, and their collaborative spirit makes every project a journey of creativity and achievement.
+            </p>
+            <p>
+                Learn more about our team members and their contributions to our success. Explore our latest projects and discover the quality and dedication that sets us apart from the rest.
+            </p>
+            <a href="/team" class="btn">Meet Our Team</a>
+        </div>
+    </div>
+    <div class="full2"></div>
+    <div class="full2"></div>
+    <div class="full2"></div>
+    <div class="full2"></div>
+    <div class="full2"></div>
+    <div class="full2"></div>
+    <div class="full2"></div>
+    <div class="full2"></div>
+    <div class="full2"></div>
+    <div class="full2"></div>
+    <div class="full2"></div>
+    <div class="full2"></div>
+    <div class="full2"></div>
+    <div class="full2"></div>
+    <div class="full2"></div>
+    <div class="full2"></div>
+    <div class="full2"></div>
+    <div class="full2"></div>
+    <!-- <div class="full2"></div>
+    <div class="full2"></div>
+    <div class="full2"></div>
+    <div class="full2"></div>
+    <div class="full2"></div>
+    <div class="full2"></div>
+    <div class="full2"></div>
+    <div class="full2"></div>
+    <div class="full2"></div>
+    <div class="full2"></div>
+    <div class="full2"></div>
+    <div class="full2"></div> -->
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const video = document.getElementById('scroll-video');
+            let previousFrame = 0;
+            let touchStartY = null;
+            let isTouching = false;
+
+            // Handle the touchstart event to detect the initial touch position.
+            document.addEventListener('touchstart', function (e) {
+                touchStartY = e.touches[0].pageY;
+                isTouching = true;
+            });
+
+            // Handle the touchmove event to detect scrolling on mobile.
+let touchScrollPosition = null;
+
+document.addEventListener('touchmove', function (e) {
+    if (touchStartY !== null && isTouching) {
+        const touchMoveY = e.touches[0].pageY;
+        const deltaY = touchMoveY - touchStartY;
+        const maxScroll = document.body.clientHeight - window.innerHeight;
+        const videoDuration = video.duration;
+
+        // Initialize touchScrollPosition when a touch starts.
+        if (touchScrollPosition === null) {
+            touchScrollPosition = window.scrollY;
+        }
+
+        // Calculate the frame based on scrolling.
+        let frame = (touchScrollPosition / maxScroll) * videoDuration - deltaY;
+
+        // Ensure the frame is within a valid range.
+        frame = Math.max(0, Math.min(videoDuration, frame));
+
+        // Animate smoothly between frames using requestAnimationFrame.
+        function animate() {
+            if (isTouching) {
+                const deltaTime = 0.02; // Adjust the speed of animation
+                const newFrame = previousFrame + (frame - previousFrame) * deltaTime;
+
+                // Set the frame directly without using requestAnimationFrame.
+                video.currentTime = newFrame;
+                video.pause();
+
+                // Pause the video when reaching the end of the scroll.
+                if (newFrame >= videoDuration || newFrame === 0) {
+                    video.pause();
+                }
+
+                previousFrame = newFrame;
+                
+                // Ensure continuous scrolling until reaching the end of the video.
+                if (newFrame < videoDuration && newFrame > 0) {
+                    requestAnimationFrame(animate);
+                }
+            }
+        }
+
+        requestAnimationFrame(animate);
+
+        touchStartY = touchMoveY;
+        previousTouchScrollPosition = touchScrollPosition;
+    }
+});
+
+
+
+            // Handle the touchend event to detect when touch ends.
+            document.addEventListener('touchend', function () {
+                isTouching = false;
+            });
+
+            // Prevent any action when clicking on the page
+            document.addEventListener('click', function (event) {
+                event.preventDefault();
+            });
+
+            // Handle the scroll event
+            window.addEventListener('wheel', function () {
+                console.log(window.scrollY)
+                const maxScroll = document.body.clientHeight - window.innerHeight;
+                const scrollPosition = window.scrollY;
+                const videoDuration = video.duration;
+
+                // Ensure the frame is within a valid range
+                let frame = (scrollPosition / maxScroll) * videoDuration;
+                frame = Math.max(0, Math.min(videoDuration, frame)); // Clamp frame to [0, videoDuration]
+
+                // Animate smoothly between frames
+                const deltaTime = 0.02; // Adjust the speed of animation
+                const newFrame = previousFrame + (frame - previousFrame) * deltaTime;
+
+                // Set the frame directly without using requestAnimationFrame
+                video.currentTime = newFrame;
+                video.pause();
+
+                // Pause the video when reaching the end of the scroll
+                if (scrollPosition >= maxScroll || scrollPosition === 0) {
+                    video.pause();
+                }
+                if(window.scrollY>=2100){
+                        document.getElementById("full1").style.animation="textTrans4 0.4s forwards"
+                }
+                if(window.scrollY<=3600 && window.scrollY>=3100){
+                    document.querySelector('.card').style.animation="glow 3s infinite"
+                }else{
+                    document.querySelector('.card').style.animationName=""
+                    document.querySelector('.card').style.boxShadow="box-shadow: 0px 0px 61px 25px black;"
+                }
+                previousFrame = newFrame;
+            });
+        });
+
+        
+        </script>
+</body>
+</html>

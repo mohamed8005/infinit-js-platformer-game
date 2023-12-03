@@ -1,0 +1,236 @@
+
+.full{
+    display: flex;
+    width:100%
+}
+.half1{
+    height:100vh;
+    width:50%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+.full2{
+    height:100vh;
+    width:100%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+.half2{
+    height:100vh;
+    background-color: grey;
+    width:50%;
+}
+body{
+    margin: 0px 0px 0px 0px;
+}
+.navbar{
+    /* background-color: white; */
+    height:79px;
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    z-index: 3;
+    transform: translateY(-100%);
+    opacity: 0;
+    display:flex;
+    justify-content: end;
+    align-items: center;
+    /* animation: fadeIn1 0.4s forwards; */
+    transition: fadeIn ease-out;
+    /* box-shadow: black 3px 3px 10px; */
+
+}
+.menu{
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bolder;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: calc(100% - 142px);
+}
+
+.menuItem{
+cursor: pointer;
+color:#341A86;
+transition: color 0.4S ease;
+}
+.menuItem:hover{
+    color:#9C0F34
+}
+
+@keyframes fadeIn1 {
+    from{
+        opacity: 0;
+        transform: translateY(-100%);
+    }to{
+        opacity: 1;
+        transform: translateY(-0%);
+    }
+}
+
+@keyframes fadeOut1 {
+    from{
+        opacity: 1;
+        transform: translateY(-0%);
+    }to{
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+}
+
+#divImg{
+    margin: 5px 5px 0px 25px;
+    border-top-left-radius: 10px; 
+    border-top-right-radius: 10px; 
+    box-shadow: black 3px 3px 10px;
+    border: wheat 1px solid;
+    display:flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    background-color: #DCADB9;
+    /* color: transparent; */
+}
+@keyframes textTrans {
+    from{
+        color:transparent;
+    }to{
+        color:black;
+    }
+}
+@keyframes textTrans4 {
+    from{
+        color:transparent;
+    }to{
+        color:rgb(255, 255, 255);
+    }
+}
+@keyframes textTrans3 {
+    from{
+        color:transparent;
+    }to{
+        color:black;
+    }
+}
+
+@keyframes textTrans2 {
+    from{
+        color:black;
+    }to{
+        color:transparent;
+    }
+}
+
+@keyframes fadeout {
+    from{
+        opacity:1;
+        transform: translateY(-100%);
+    }to{
+        opacity:0;
+        transform: translateY(200%);
+    }
+}
+
+@keyframes fadein {
+    from{
+        opacity:0;
+        transform: translateY(200%);
+    }to{
+        opacity:1;
+        transform: translateY(-100%);
+    }
+}
+
+
+
+#company-section {
+    display: flex;
+    flex-direction: row;
+    /* align-items: center; */
+    justify-content: space-around;
+    align-content: center;
+    background-color: #f9f9f9;
+    padding: 30px;
+}
+
+.company-info {
+    width:30%;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.company-values {
+    width:30%;
+
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.company-values ul {
+    list-style-type: square;
+    padding-left: 20px;
+}
+
+.contact-info {
+    width:30%;
+
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.contact-info p {
+    margin: 5px 0;
+}
+
+
+/* Remove the underline and set the link color */
+a {
+    text-decoration: none; /* Remove underline */
+    cursor: pointer;
+    color: #341A86;
+    transition: color 0.4s ease;
+}
+
+/* Define the color for visited (clicked) links */
+a:visited {
+    color: #341A86; /* Set the color for clicked links */
+}
+
+/* Hover style for links */
+a:hover {
+    color: #9C0F34; /* Set the color for hovered links */
+}
+
+
+.card {
+    width: 50%;
+    box-shadow: 0px 0px 61px 25px black;
+    
+    position: relative;
+    overflow: hidden;
+}
+
+.card::before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform: translateX(-100%);
+    z-index: -1;
+    background-color: transparent;
+    transition: transform 0.4s ease, background-color 0.4s ease; /* Add background-color transition */
+}
+
+.card:hover::before {
+    transform: translateX(0); /* Change this value to adjust the direction of the sliding */
+    background-color: rgb(255, 255, 255); /* Change to the color you want */
+}
+
+
+
+
+
+
